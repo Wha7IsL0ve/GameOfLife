@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace GameOfLife
 {
@@ -42,8 +42,7 @@ namespace GameOfLife
 
         public void OneStep()
         {
-            AliveCellsButtons.ForEach(cellbutton => cellbutton.IsAlive = false);
-            AliveCellsButtons.ForEach(cellbutton => cellbutton.ColorUpdate());
+            AliveCellsButtons.ForEach(cellbutton => cellbutton.ColorChange());
             AliveCellsButtons.Clear();
             List<Cell> AliveCells = GameOfLife.OneLifeStep();
 
@@ -51,8 +50,7 @@ namespace GameOfLife
             {
                 AliveCellsButtons.Add(PlaneButtons[cell.X, cell.Y]);
             }
-            AliveCellsButtons.ForEach(cellbutton => cellbutton.IsAlive = true);
-            AliveCellsButtons.ForEach(cellbutton => cellbutton.ColorUpdate());
+            AliveCellsButtons.ForEach(cellbutton => cellbutton.ColorChange());
         }
 
 
@@ -60,7 +58,7 @@ namespace GameOfLife
         {
             CellButton cellbutton = (sender as CellButton);
 
-            if (cellbutton.IsAlive)
+            if (AliveCellsButtons.Contains(cellbutton))
             {
                 GameOfLife.Cell_Remove(cellbutton.X, cellbutton.Y);
                 AliveCellsButtons.Remove(cellbutton);
@@ -71,8 +69,7 @@ namespace GameOfLife
                 AliveCellsButtons.Add(cellbutton);
             }
 
-            cellbutton.IsAlive = !cellbutton.IsAlive;
-            cellbutton.ColorUpdate();                       
+            cellbutton.ColorChange();                       
         }
 
         private void timer1_Tick(object sender, EventArgs e)

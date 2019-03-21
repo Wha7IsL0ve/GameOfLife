@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using System.Drawing;
 using System.Collections.Generic;
 
@@ -8,7 +6,6 @@ namespace GameOfLife
 {
     class CellButton : Button
     {
-        public bool IsAlive = false;
         public int X;
         public int Y;
 
@@ -29,13 +26,12 @@ namespace GameOfLife
             BackColor = DeadColor;
             Size = new Size(Width, Width);
             FlatStyle = FlatStyle.Flat;
-            IsAlive = false;
             ID = id;
         }
 
-        public void ColorUpdate()
+        public void ColorChange()
         {
-            BackColor = IsAlive ? LiveColor : DeadColor;
+            BackColor = BackColor == LiveColor ? DeadColor : LiveColor;
         }
     }
 }

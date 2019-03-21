@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace GameOfLife
@@ -7,7 +6,7 @@ namespace GameOfLife
     class GameOfLife
     {
         private int Count;
-        public Cell[,] Plane;
+        private Cell[,] Plane;
         private List<Cell> AliveCells;
         private List<Cell> DeadCells;
         private List<Cell> NewCells;
