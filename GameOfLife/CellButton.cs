@@ -9,16 +9,24 @@ namespace GameOfLife
     class CellButton : Button
     {
         public bool IsAlive = false;
+        public int X;
+        public int Y;
+
+        private Color LiveColor = Color.White;
+        private Color DeadColor = Color.Gray;
 
         public string ID;
 
         public List<CellButton> Neighbours = new List<CellButton>(8);
 
-        public CellButton(int x, int y, bool IsAlive, string id, int Width)
+        public CellButton(int x, int y, string id, int Width)
         {
-            Location = new Point(x, y);
+            X = x;
+            Y = y;
+            Location = new Point(X * Width, Y * Width);
+
             ForeColor = Color.White;
-            BackColor = Color.Gray;
+            BackColor = DeadColor;
             Size = new Size(Width, Width);
             FlatStyle = FlatStyle.Flat;
             IsAlive = false;
@@ -27,14 +35,7 @@ namespace GameOfLife
 
         public void ColorUpdate()
         {
-            if (IsAlive)
-            {
-                BackColor = Color.White;
-            }
-            else
-            {
-                BackColor = Color.Gray;
-            }
+            BackColor = IsAlive ? LiveColor : DeadColor;
         }
     }
 }
